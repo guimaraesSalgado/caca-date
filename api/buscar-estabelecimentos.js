@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // Função para buscar as coordenadas do CEP usando a API do Google Geocoding
 const buscarCoordenadasPorCEP = async (cep) => {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`;
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=${process.env.GOOGLE_API_KEY}`;
   const response = await axios.get(url);
 
   if (response.data.status === 'OK') {
@@ -16,7 +16,7 @@ const buscarCoordenadasPorCEP = async (cep) => {
 // Função para buscar estabelecimentos próximos usando a API do Google Places
 const buscarEstabelecimentosPorCoordenadas = async (latitude, longitude, tipo, valorMaximo, raioKm) => {
   const raioMetros = raioKm * 1000; // Converte o raio de km para metros
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${raioMetros}&type=${tipo}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`;
+  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${raioMetros}&type=${tipo}&key=${process.env.GOOGLE_API_KEY}`;
 
   const response = await axios.get(url);
   if (response.data.status === 'OK') {
