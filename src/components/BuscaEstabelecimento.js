@@ -35,6 +35,9 @@ const priceOptions = [
     { value: 5, label: '$$$$$' }
 ];
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
+
+
 const BuscaEstabelecimento = () => {
     const [convidado, setConvidado] = useState('');
     const [cep, setCep] = useState('');
@@ -48,7 +51,7 @@ const BuscaEstabelecimento = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/buscar-estabelecimentos', {
+            const response = await axios.post(`${API_URL}/buscar-estabelecimentos`, {
                 cep,
                 tipo,
                 valorMaximo: Number(valorMaximo),
