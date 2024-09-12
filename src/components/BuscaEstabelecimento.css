@@ -1,0 +1,209 @@
+/* src/BuscaEstabelecimento.css */
+
+/* Corpo e layout geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #788896;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    color: #293845;
+    text-align: left;
+    margin: 0;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    display: block;
+    text-align: left;
+    width: 100%;
+    color: #4b5c6b;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4d9;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #788896;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #ced4d9;
+    outline: none;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 50%;
+    padding: 12px;
+    background-color: #6558f5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #6558f5;
+    font-weight: 400;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: start;
+}
+
+.tag {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 2px solid #ced4d9;
+    transition: background-color 0.3s;
+    font-size: 15px;
+    width: auto; 
+
+}
+
+.tag.active {
+    background-color: #788896;
+    border: 2px solid #788896;
+    color: white;
+}
+
+.tag:hover {
+    background-color: #788896;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-section {
+    width: 100%;
+    margin: 1rem;
+}
+
+.form-wrapper {
+    width: 100%;
+}
+
+.value-input {
+    width: 35%;
+    text-align: right;
+}
+
+.cep-input {
+    width: 60%;
+}
+
+.range-input {
+    width: 35%;
+}
+
+.container {
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list-item p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.list-item strong {
+    font-size: 15px;
+    color: #ff4d4d;
+}
+
+.list-item svg {
+    margin-right: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff4d4d;
+    z-index: 1000;
+}
+
+.price-level {
+    display: flex;
+    gap: 5px;
+}
+
+.price-symbol {
+    font-size: 24px;
+    cursor: pointer;
+    color: #bbb; /* Cor cinza para cifrões inativos */
+}
+
+.price-symbol.active {
+    color: #ff4d4d; /* Cor vermelha para cifrões ativos */
+}
+
+.price-symbol:hover {
+    color: #ff6666;
+}
+
+.assessment {
+    right: 0;
+    background: #ffe200;
+    color: white;
+    font-weight: 700;
+    padding: 5px;
+    border-radius: 50px;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
