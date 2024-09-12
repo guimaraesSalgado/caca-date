@@ -38,8 +38,7 @@ const buscarEstabelecimentosPorCoordenadas = async (latitude, longitude, tipo, v
   }
 };
 
-// Função serverless
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
     const { cep, tipo, valorMaximo, raio } = req.body;
     try {
@@ -56,8 +55,7 @@ export default async function handler(req, res) {
       res.status(500).json({ error: error.message });
     }
   } else {
-    // Responder com erro 405 se o método não for POST
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Método ${req.method} não permitido`);
   }
-}
+};
