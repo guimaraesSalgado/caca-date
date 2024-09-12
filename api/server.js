@@ -9,7 +9,7 @@ app.use(cors()); // Permitir requisições do front-end
 
 // Função para buscar as coordenadas do CEP usando a API do Google Geocoding
 const buscarCoordenadasPorCEP = async (cep) => {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=${process.env.GOOGLE_API_KEY}`; // Usando a chave do .env
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`; // Usando a chave do .env
   console.log(`Requisição para Geocoding API: ${url}`);
   
   const response = await axios.get(url);
@@ -29,7 +29,7 @@ const buscarEstabelecimentosPorCoordenadas = async (latitude, longitude, tipo, v
     }
 
     const raioMetros = raioKm * 1000; // Converte o raio de km para metros
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${raioMetros}&type=${tipo}&key=${process.env.GOOGLE_API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${raioMetros}&type=${tipo}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`;
     console.log(`Fazendo requisição para Google Places: ${url}`);
     
     const response = await axios.get(url);
