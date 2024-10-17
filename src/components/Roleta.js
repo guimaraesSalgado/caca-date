@@ -49,10 +49,10 @@ const coresIniciais = [
 // Usando forwardRef para expor girarRoleta ao componente pai
 const Roleta = forwardRef((props, ref) => {
     const [isSpinning, setIsSpinning] = useState(false);
-    const [result, setResult] = useState(null);
+    const [setResult] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [premios, setPremios] = useState(shuffleArray([...premiosIniciais])); // Prêmios embaralhados
-    const [cores, setCores] = useState(shuffleArray([...coresIniciais])); // Cores embaralhadas
+    const [premios] = useState(shuffleArray([...premiosIniciais])); // Prêmios embaralhados
+    const [cores] = useState(shuffleArray([...coresIniciais])); // Cores embaralhadas
     const [rotationAngle, setRotationAngle] = useState(0); // Ângulo final da rotação
     const navigate = useNavigate();
 

@@ -55,25 +55,25 @@ const BuscaEstabelecimento = () => {
 
     // Solicitar a localização ao carregar a página
     useEffect(() => {
+        const obterLocalizacaoAtual = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        converterCoordenadasParaCEP(latitude, longitude);
+                    },
+                    (error) => {
+                        console.error("Erro ao obter localização:", error);
+                        alert("Não foi possível obter sua localização. Certifique-se de permitir o acesso à localização.");
+                    }
+                );
+            } else {
+                alert("Seu navegador não suporta a geolocalização.");
+            }
+        };
+
         obterLocalizacaoAtual();
     }, []);
-
-    const obterLocalizacaoAtual = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    converterCoordenadasParaCEP(latitude, longitude);
-                },
-                (error) => {
-                    console.error("Erro ao obter localização:", error);
-                    alert("Não foi possível obter sua localização. Certifique-se de permitir o acesso à localização.");
-                }
-            );
-        } else {
-            alert("Seu navegador não suporta a geolocalização.");
-        }
-    };
 
     const converterCoordenadasParaCEP = async (latitude, longitude) => {
         try {
