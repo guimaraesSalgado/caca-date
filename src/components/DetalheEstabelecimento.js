@@ -1,33 +1,32 @@
 import React, { useRef } from 'react';
-import { FaStar } from 'react-icons/fa'; 
-import { useLocation, useNavigate } from 'react-router-dom'; // Importa o useNavigate para redirecionamento
-import Slider from 'react-slick'; 
+import { FaStar } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
 import Header from './Header';
 import './DetalheEstabelecimento.css';
 
-// Componente para a seta da direita
-const RightArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: 'block', background: '#f7c325', right: '-10px' }} // Personaliza o estilo da seta
-            onClick={onClick}
-        />
-    );
-};
+const Arrow = ({ className, style, onClick, direction }) => (
+    <div
+        className={className}
+        style={{
+            ...style,
+            display: 'block',
+            background: '#f7c325',
+            [direction]: '-10px'
+        }}
+        onClick={onClick}
+    />
+);
 
 const DetalheEstabelecimento = () => {
     const location = useLocation();
-    const navigate = useNavigate(); // Hook para navegação
-    const { lugares } = location.state || { lugares: [] };
+    const navigate = useNavigate(); 
+    const { lugares = [] } = location.state || { lugares: [] };  // Usa valor padrão para evitar undefined
 
-    const sliderRef = useRef(null); // UseRef para controlar o carrossel
+    const sliderRef = useRef(null); 
 
-    const getPhotoUrl = (photo_reference) => {
-        if (!photo_reference) return null;
-        return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`;
-    };
+    const getPhotoUrl = (photo_reference) =>
+        photo_reference && `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyA-k29mFBaCGACDuPXy9rqOalw0fPXXgEQ`;
 
     const settings = {
         dots: true,
@@ -39,33 +38,30 @@ const DetalheEstabelecimento = () => {
         adaptiveHeight: true,
         centerMode: true,
         centerPadding: "40px",
-        nextArrow: <RightArrow />, // Personaliza a seta da direita
-        prevArrow: null, // Remove a seta da esquerda
+        nextArrow: <Arrow />, 
+        prevArrow: null,
     };
 
-    // Função para obter o item ativo no carrossel e compartilhar
     const handleShareItem = () => {
-        if (sliderRef.current) {
+        if (sliderRef.current && sliderRef.current.innerSlider) {
             const currentSlide = sliderRef.current.innerSlider.state.currentSlide;
             const lugarAtual = lugares[currentSlide];
-            if (navigator.share) {
+            if (navigator.share && lugarAtual) {
                 navigator.share({
                     title: `Convite para ${lugarAtual.name}`,
-                    text: `Encontre-se em ${lugarAtual.name}, localizado em ${lugarAtual.formatted_address}. 
-                    Avaliação: ${lugarAtual.rating} estrelas.`,
-                    url: window.location.href
+                    text: `Encontre-se em ${lugarAtual.name}, localizado em ${lugarAtual.formatted_address}. Avaliação: ${lugarAtual.rating} estrelas.`,
+                    url: window.location.href,
                 })
-                .then(() => console.log('Compartilhamento realizado com sucesso!'))
-                .catch((error) => console.log('Erro ao compartilhar', error));
-            } else {
-                console.log('A API Web Share não é suportada neste navegador.');
+                    .then(() => console.log('Compartilhamento realizado com sucesso!'))
+                    .catch((error) => console.log('Erro ao compartilhar', error));
             }
+        } else {
+            console.log('Não foi possível encontrar o item atual para compartilhar.');
         }
     };
 
-    // Função para redirecionar para a página de busca
     const handleGoToSearch = () => {
-        navigate('/'); // Redireciona para a página de busca
+        navigate('/');
     };
 
     return (
@@ -77,31 +73,30 @@ const DetalheEstabelecimento = () => {
 
             {lugares.length > 0 ? (
                 <Slider {...settings} ref={sliderRef}>
-                    {lugares.map((lugar, index) => (
-                        <div key={index} className="detail">
+                    {lugares.map((lugar, index) => ( 
+                        <div key={lugar.place_id || index} className="detail">  {/* Adicionei um fallback para key */}
                             <div className="list-item">
+                                <div className="rating-box">
+                                    <FaStar color="#fff" />
+                                    <p>{lugar.rating}</p>
+                                </div>
                                 <div className="item-box">
                                     <div className="item-box-image">
-                                    <div className="rating-box">
-                                            {/* Ícone de estrela usando React Icons */}
-                                            <FaStar color="#293845" /> {/* Define a cor da estrela */}
-                                            <p>{lugar.rating}</p> 
-                                        </div>
                                         {lugar.photo_reference && (
                                             <img
                                                 src={getPhotoUrl(lugar.photo_reference)}
-                                                alt="Estabelecimento"
+                                                alt={`Imagem do estabelecimento ${lugar.name}`}
                                                 className="estabelecimento-imagem"
                                             />
                                         )}
                                     </div>
                                     <div className="item-box-info">
-                                        <p className="nome">{lugar.name}</p>
+                                        <p className="nome"><b>{lugar.name}</b></p>
                                         <div className="price-status">
                                             <p style={{ color: '#f7c325', fontWeight: '600' }}>
                                                 {Array(lugar.price_level).fill('$').join('')}
                                             </p>
-                                            <p style={{ color: lugar.opening_hours && lugar.opening_hours.includes('Aberto') ? 'green' : 'red' }}>
+                                            <p style={{ color: lugar.opening_hours && lugar.opening_hours.includes('Aberto') ? 'green' : 'gray', fontWeight: 600 }}>
                                                 {lugar.opening_hours ? lugar.opening_hours : 'Horário não disponível'}
                                             </p>
                                         </div>
@@ -110,20 +105,21 @@ const DetalheEstabelecimento = () => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ))} 
                 </Slider>
             ) : (
                 <p>Nenhum estabelecimento encontrado.</p>
             )}
 
             <div className='share'>
-                <button onClick={handleShareItem} className="active-item-button">Compartilhar convite</button>
+                <button onClick={handleShareItem} className="active-item-button" aria-label="Compartilhar convite">
+                    Compartilhar convite
+                </button>
             </div>
 
             <div className='other'>
-                <button onClick={handleGoToSearch} className="active-item-other">Procurar outro role</button>
+                <button onClick={handleGoToSearch} className="active-item-other" aria-label="Trocar Date">Trocar date</button>
             </div>
-
         </div>
     );
 };

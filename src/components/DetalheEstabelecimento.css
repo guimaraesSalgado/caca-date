@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     margin: 0px 30px;
+    margin-bottom: 30px;
 }
 
 .detail {
@@ -33,7 +34,7 @@
 
 .slick-dots {
     position: relative;
-    bottom: 0;
+    bottom: -20px;
 }
 
 .slick-dots li button::before {
@@ -49,19 +50,22 @@ li.slick-active button::before {
     align-items: center;
     font-size: 18px;
     font-weight: bold;
-    color: #293845;
+    color: #fff;
 }
 
 .slick-arrow {
     z-index: 2;
+    background: rgb(255 255 255 / 0%) !important;
 }
 
 .slick-prev {
-    display: none; 
+    display: none;
+    left: 0; 
+    margin: 0;
 }
 
 .slick-next {
-    right: -10px; 
+    right: 0 !important;
 }
 
 .item-box {
@@ -76,6 +80,7 @@ li.slick-active button::before {
     max-width: 100%;
     overflow: hidden;
     margin: 0 auto;
+    position: relative; /* Necessário para posicionar o texto */
 }
 
 .item-box-image {
@@ -96,11 +101,11 @@ li.slick-active button::before {
 }
 
 .rating-box {
+    margin: 20px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -10px;
     background-color: #f7c325;
-    color: #293845;
+    color: #fff;
     border-radius: 50px;
     padding: 10px;
     font-size: 18px;
@@ -150,7 +155,7 @@ li.slick-active button::before {
 }
 
 .item-box-info {
-    min-height: 150px;
+    min-height: 180px;
 }
 
 .share, .other {
@@ -169,3 +174,30 @@ button.active-item-other {
     color: #6558f5;
     text-decoration: underline;
 }
+
+/* Aplica o blur apenas no conteúdo do 4º item */
+.list-item .item-box.blur {
+    filter: blur(5px);  /* Aplica o efeito de blur no conteúdo */
+    opacity: 0.6; /* Reduz opacidade para enfatizar o efeito */
+    pointer-events: none; /* Desativa interação com o item */
+    position: relative; /* Necessário para a sobreposição do texto */
+}
+
+/* Estilização do texto sobre o 4º item com blur */
+.list-item .blur-overlay {
+    position: relative;
+    bottom: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: rgb(255 255 255 / 91%);
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 50px;
+    z-index: 10;
+    pointer-events: none;
+    text-align: center;
+}
+
