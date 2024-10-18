@@ -7,7 +7,7 @@
     },
     "env": {
       "NODE_ENV": "production",
-      "REACT_APP_API_URL": "https://<sua-url-api>"
+      "REACT_APP_API_URL": "https://caca-date-production.up.railway.app/"
     }
   }
   
