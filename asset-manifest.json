@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/guimaraesSalgado/caca-date/static/css/main.069989ae.css",
+    "main.js": "/guimaraesSalgado/caca-date/static/js/main.d4b8dd89.js",
+    "static/js/453.51072a7c.chunk.js": "/guimaraesSalgado/caca-date/static/js/453.51072a7c.chunk.js",
+    "static/media/music.svg": "/guimaraesSalgado/caca-date/static/media/music.5ea06dd70b151a41786739a4d3cd894d.svg",
+    "static/media/beach.svg": "/guimaraesSalgado/caca-date/static/media/beach.81f7a1c8f98e84a4a70644e9f9cef200.svg",
+    "static/media/nature.svg": "/guimaraesSalgado/caca-date/static/media/nature.e854fe9e60a65624316dffe64fb8c864.svg",
+    "static/media/ticket.svg": "/guimaraesSalgado/caca-date/static/media/ticket.84e9db2af4a09268e57e4ac9d728b28e.svg",
+    "static/media/title-caca-date.svg": "/guimaraesSalgado/caca-date/static/media/title-caca-date.ec4ae6082661b0acf8f284f8223a10b4.svg",
+    "static/media/food.svg": "/guimaraesSalgado/caca-date/static/media/food.c6cc26e5cbcaff92209829925b08c4d8.svg",
+    "static/media/movie.svg": "/guimaraesSalgado/caca-date/static/media/movie.a04d7f394b46672b7b3436e4f696cf99.svg",
+    "static/media/games.svg": "/guimaraesSalgado/caca-date/static/media/games.71299459a36019e583ff60e5ab5877ec.svg",
+    "static/media/art.svg": "/guimaraesSalgado/caca-date/static/media/art.6181656bbe1b478c7029224f2c136f60.svg",
+    "index.html": "/guimaraesSalgado/caca-date/index.html",
+    "main.069989ae.css.map": "/guimaraesSalgado/caca-date/static/css/main.069989ae.css.map",
+    "main.d4b8dd89.js.map": "/guimaraesSalgado/caca-date/static/js/main.d4b8dd89.js.map",
+    "453.51072a7c.chunk.js.map": "/guimaraesSalgado/caca-date/static/js/453.51072a7c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.069989ae.css",
+    "static/js/main.d4b8dd89.js"
+  ]
+}
