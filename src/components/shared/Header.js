@@ -4,9 +4,7 @@ import './Header.css';
 const Header = () => {
     return (
         <div className="header">
-            <figure>
-                <img src="URL_DO_LOGO" alt="Logo" className="logo" />
-            </figure>
+            <p>&hearts; Caça Date</p>
         </div>
     );
 };

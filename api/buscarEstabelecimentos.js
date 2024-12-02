@@ -1,4 +1,14 @@
+const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
+const app = express();
+
+// Middleware para habilitar JSON e CORS
+app.use(express.json());
+app.use(cors({
+  origin: ['http://localhost:3001'], // Adicione aqui as origens permitidas
+  methods: ['GET', 'POST'], // Métodos permitidos
+}));
 
 // Função para buscar as coordenadas do CEP usando a API do Google Geocoding
 const buscarCoordenadasPorCEP = async (cep) => {
@@ -40,32 +50,32 @@ const buscarEstabelecimentosPorCoordenadas = async (latitude, longitude, tipo, v
   }
 };
 
-// Handler para lidar com a requisição POST
-module.exports = async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { cep, tipo, valorMaximo, raio } = req.body;
-    try {
-      // Buscar as coordenadas com base no CEP fornecido
-      const coordenadas = await buscarCoordenadasPorCEP(cep);
-      
-      // Buscar estabelecimentos próximos com base nas coordenadas, tipo e valor máximo
-      const estabelecimentos = await buscarEstabelecimentosPorCoordenadas(
-        coordenadas.lat,
-        coordenadas.lng,
-        tipo,
-        valorMaximo,
-        raio
-      );
-      
-      // Retornar os estabelecimentos encontrados
-      res.status(200).json({ lugares: estabelecimentos });
-    } catch (error) {
-      // Em caso de erro, retornar status 500 com a mensagem de erro
-      res.status(500).json({ error: error.message });
-    }
-  } else {
-    // Se o método HTTP não for POST, retornar status 405 (método não permitido)
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Método ${req.method} não permitido`);
+// Rota POST para buscar estabelecimentos
+app.post('/buscar-estabelecimentos', async (req, res) => {
+  const { cep, tipo, valorMaximo, raio } = req.body;
+  try {
+    // Buscar as coordenadas com base no CEP fornecido
+    const coordenadas = await buscarCoordenadasPorCEP(cep);
+    
+    // Buscar estabelecimentos próximos com base nas coordenadas, tipo e valor máximo
+    const estabelecimentos = await buscarEstabelecimentosPorCoordenadas(
+      coordenadas.lat,
+      coordenadas.lng,
+      tipo,
+      valorMaximo,
+      raio
+    );
+    
+    // Retornar os estabelecimentos encontrados
+    res.status(200).json({ lugares: estabelecimentos });
+  } catch (error) {
+    // Em caso de erro, retornar status 500 com a mensagem de erro
+    res.status(500).json({ error: error.message });
   }
-};
+});
+
+// Iniciar o servidor
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});

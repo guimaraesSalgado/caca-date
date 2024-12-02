@@ -1,259 +1,167 @@
-/* Corpo e layout geral */
+/* === Variáveis Globais === */
+:root {
+    /* Cores */
+    --primary-color: #6558f5;
+    --secondary-color: #2E2E48;
+    --text-color-light: #E0E0FA;
+    --text-color-dark: #000000;
+    --disabled-color: #B4B4C2;
+
+    /* Espaçamento */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Outros */
+    --button-disabled-bg: transparent;
+    --button-hover-bg: var(--primary-color);
+    --button-active-scale: 0.98;
+
+    /* Fontes */
+    --font-family: 'Roboto', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 2.5rem;
+}
+
+/* === Estilo Global === */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #fff;
-    color: #788896;
+    background: radial-gradient(circle, #1C1C4E, #0B0A1A);
+    color: var(--text-color-light);
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
-}
-
-h1, h2 {
-    color: #293845;
-    text-align: left;
-    margin: 0;
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-label {
-    display: block;
-    text-align: left;
-    width: 100%;
-    color: #4b5c6b;
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-input[type="text"],
-input[type="number"],
-select,
-input[type="range"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ced4d9;
     box-sizing: border-box;
-    font-size: 16px;
-    color: #788896;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-    border-color: #ced4d9;
-    outline: none;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: bold;
+    color: var(--text-color-light);
 }
 
-.header {
+/* === Layout === */
+.container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    box-sizing: border-box;
+}
+
+.hero-section {
     text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
+    padding: var(--spacing-xl) 0;
+    border-radius: var(--spacing-sm);
 }
 
-button {
-    width: 50%;
-    padding: 12px;
-    background-color: #6558f5;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+.hero-section h1 {
+    font-size: var(--font-size-xl);
+    text-transform: uppercase;
 }
 
-button:hover {
-    background-color: #6558f5;
-    font-weight: 400;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: start;
-}
-
-.tag {
-    padding: 8px 15px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 2px solid #ced4d9;
-    transition: background-color 0.3s;
-    font-size: 15px;
-    width: auto;
-    color: #788896;
-}
-
-.tag.active {
-    background-color: #788896;
-    border: 2px solid #788896;
-    color: white;
-}
-
-.tag:hover {
-    background-color: #788896;
-    color: white;
-    cursor: pointer;
-}
-
-.tags-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+/* === Formulário === */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
 }
 
 .form-section {
+    margin-top: var(--spacing-lg);
+}
+
+input,
+select {
     width: 100%;
-    margin: 1rem;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    border-radius: var(--spacing-sm);
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-base);
+    box-sizing: border-box;
 }
 
-.form-wrapper {
-    width: 100%;
+input::placeholder {
+    color: var(--disabled-color);
 }
 
-.value-input {
-    width: 35%;
-    text-align: right;
+input:focus,
+select:focus {
+    outline: 2px solid var(--primary-color);
 }
 
-.cep-input {
-    width: 60%;
+input:disabled,
+select:disabled {
+    background-color: var(--secondary-color);
+    color: var(--disabled-color);
+    border: 1px solid #373753;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
-.range-input {
-    width: 35%;
+input[type="date"] {
+    color: #E0E0FA; /* Cor do texto */
 }
 
-.container {
-    padding: 20px;
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverte as cores do ícone */
+    cursor: pointer; /* Define o cursor como clicável */
 }
 
-/* Toggle Switch */
-.toggle-container {
+
+.date-time-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
 }
 
-.toggle-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.date-time-row .form-section {
+    flex: 1;
+    margin: 0;
 }
 
-.toggle-switch {
-    width: 60px;
-    height: 30px;
-    background-color: #ccc;
-    border-radius: 20px;
-    position: relative;
+/* === Botão === */
+.cta-section {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    border-radius: var(--spacing-lg);
+    border: none;
     cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.toggle-thumb {
-    width: 28px;
-    height: 28px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 1px;
-    transition: 0.3s;
-}
-
-.toggle-thumb.custom {
-    left: 1px; /* Posição quando "Personalizar busca" está ativo */
-}
-
-.toggle-thumb.random {
-    left: 31px; /* Posição quando "Encontro aleatório" está ativo */
-}
-
-.toggle-label span {
-    font-size: 14px;
-    font-weight: 600;
-    color: #6558f5;
-}
-
-.toggle-label span.active {
-    font-weight: 700;
-    color: #6558f5;
-}
-
-/* Animação de "..." */
-button[disabled] {
-    background-color: #cccccc; /* Cor do botão quando está desativado */
+.cta-button:disabled {
+    background-color: var(--button-disabled-bg);
     cursor: not-allowed;
 }
 
-.loading-animation .dot {
-    display: inline-block;
-    font-size: 24px;
-    margin-left: 2px;
-    animation: bounce 1.4s infinite ease-in-out both;
+.cta-button:hover:not(:disabled) {
+    transform: scale(1.1);
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
-.loading-animation .dot:nth-child(1) {
-    animation-delay: -0.32s;
+.cta-button:active:not(:disabled) {
+    transform: scale(var(--button-active-scale));
 }
 
-.loading-animation .dot:nth-child(2) {
-    animation-delay: -0.16s;
-}
-
-.loading-animation .dot:nth-child(3) {
-    animation-delay: 0s;
-}
-
-@keyframes bounce {
-    0%, 80%, 100% {
-        transform: scale(0.8);
-    }
-    40% {
-        transform: scale(1.5);
-    }
-}
-
-/* Wrapper para a roleta com visibilidade parcial */
-.roleta-wrapper {
-    height: 200px; /* 50% da altura inicial */
-    position: fixed; /* Para manter a roleta fixa e sobrepor outros elementos */
-    bottom: 0; /* Posiciona a roleta na parte inferior da tela */
-    left: 0;
-    right: 0;
-    transition: height 1s ease-in-out, bottom 1s ease-in-out; /* Transição suave ao expandir */
-    z-index: 10; /* Garantir que a roleta esteja acima de outros conteúdos */
-    background: white; /* Fundo branco ao subir a roleta */
-}
-
-/* Quando a roleta está totalmente visível */
-.roleta-wrapper.full-visible {
-    height: 250px; /* Exibe 100% da roleta */
-    bottom: 0%; /* Move a roleta para cima da tela */
-}
-
-/* Quando a roleta está girando */
-.roleta-wrapper.full-visible .roleta-container {
-    transform: translateY(-50%); /* Move a roleta para cima */
-}
-
-.roleta-container {
-    transform: translateY(0);
-    transition: transform 1s ease-in-out;
+/* === Snackbar === */
+.snackbar {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    padding: var(--spacing-md);
+    border-radius: var(--spacing-sm);
 }
