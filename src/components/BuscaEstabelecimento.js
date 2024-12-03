@@ -19,7 +19,7 @@
         const [data, setData] = useState('');
         const [hora, setHora] = useState('');
         const [local, setLocal] = useState('');
-        const [isSpinning, setIsSpinning] = useState(false);
+        const [isSpinning] = useState(false);
         const [error, setError] = useState(null);
         const [snackbarOpen, setSnackbarOpen] = useState(false);
 

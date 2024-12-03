@@ -24,17 +24,15 @@ const Wheel = () => {
     { label: "Show", image: ShowImg },
     { label: "Música", image: MusicaImg },
   ];
-  
+
   // Colors: cores alternadas para os segmentos
   const segColors = ["#c5c1fd", "#272774", "#c5c1fd", "#272774", "#c5c1fd", "#272774", "#c5c1fd", "#272774"];
 
   // Função chamada quando o giro termina
-  const [winner, setWinner] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [result, setResult] = useState("");
 
   const handleFinished = (winner) => {
-    setWinner(winner); // Atualiza o vencedor no estado
     setResult(winner);
     setModalOpen(true); // Abre o modal
   };
@@ -46,8 +44,8 @@ const Wheel = () => {
   return (
     <div>
       <WheelComponent
-        segments={segments} 
-        segColors={segColors} 
+        segments={segments}
+        segColors={segColors}
         onFinished={handleFinished}
         size={250} // Tamanho da roleta
         primaryColor="#f8a85f" // Cor do centro
@@ -55,9 +53,7 @@ const Wheel = () => {
         buttonText="" // Texto do botão
       />
       <Modal isOpen={modalOpen} onClose={closeModal} result={result} />
-
     </div>
-
   );
 };
 
