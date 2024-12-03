@@ -76,14 +76,13 @@ const BuscaEstabelecimento = () => {
           onChange={(e) =>
             setConvidado(e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, ""))
           }
-          placeholder="O nome irá aparecer no convite"
           required
         />
 
         <div className="date-time-row">
           <FormInput
             id="data"
-            label="Data do encontro"
+            label="Data"
             type="date"
             value={data}
             onChange={(e) => setData(e.target.value)} // Atualiza o estado
@@ -93,11 +92,10 @@ const BuscaEstabelecimento = () => {
 
           <FormSelect
             id="hora"
-            label="Hora do encontro"
+            label="Hora"
             value={hora}
             onChange={(e) => setHora(e.target.value)}
             options={data ? generateHourOptions(data) : []}
-            placeholder="Selecione a hora"
             disabled={!data}
           />
         </div>
@@ -107,7 +105,6 @@ const BuscaEstabelecimento = () => {
           label="Local do encontro"
           value={local}
           onChange={(e) => setLocal(e.target.value)}
-          placeholder="Digite o local do encontro"
           required
         />
 

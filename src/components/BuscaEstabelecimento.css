@@ -65,8 +65,9 @@ h1, h2, h3, h4, h5, h6 {
 /* === Formulário === */
 .form-container {
     max-width: 600px;
-    margin: 0 auto;
-    padding: var(--spacing-lg);
+    margin: 0 auto; 
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
 }
 
 .form-section {
@@ -129,6 +130,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .cta-section {
     text-align: center;
     margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
 }
 
 .cta-button {
