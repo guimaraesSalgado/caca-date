@@ -7,7 +7,6 @@ import Slide from "@mui/material/Slide";
 
 import bannerImage from "../assets/title-caca-date.svg";
 
-import Header from "./shared/Header";
 import FormInput from "./shared/FormInput";
 import FormSelect from "./shared/FormSelect";
 
