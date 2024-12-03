@@ -5,7 +5,7 @@
     import Alert from '@mui/material/Alert';
     import Slide from '@mui/material/Slide';
 
-    import titleImage from '../assets/title-caca-date.svg';
+    import bannerImage from '../assets/title-caca-date.svg';
 
     import Header from './shared/Header';
     import FormInput from './shared/FormInput';
@@ -71,7 +71,7 @@
             <div className="container busca-container">
                 <Header />
                 <div className="hero-section">
-                    <img src={titleImage} alt="Título Caca Date" className="hero-image" />
+                    <img src={bannerImage} alt="Título Caca Date" className="hero-image" />
                 </div>
 
                 <form
