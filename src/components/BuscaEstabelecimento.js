@@ -87,7 +87,6 @@ const BuscaEstabelecimento = () => {
             value={data}
             onChange={(e) => setData(e.target.value)} // Atualiza o estado
             min={new Date().toISOString().split("T")[0]} // Restrição no HTML
-            required
           />
 
           <FormSelect
