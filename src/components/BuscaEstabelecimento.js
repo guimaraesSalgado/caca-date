@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-import Slide from "@mui/material/Slide";
 
 import bannerImage from "../assets/title-caca-date.svg";
 
@@ -19,19 +16,31 @@ const BuscaEstabelecimento = () => {
   const [hora, setHora] = useState("");
   const [local, setLocal] = useState("");
   const [isSpinning] = useState(false);
-  const [error, setError] = useState(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [errors, setErrors] = useState({ convidado: "", local: "" });
 
-  const handleCloseSnackbar = () => setSnackbarOpen(false);
+  const validateFields = () => {
+    const newErrors = {};
+    if (!convidado.trim()) newErrors.convidado = "Este campo deve ser preenchido";
+    if (!local.trim()) newErrors.local = "Este campo deve ser preenchido";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (field, value) => {
+    // Atualiza o valor do campo e remove erros dinâmicos se o campo for válido
+    if (field === "convidado") {
+      setConvidado(value);
+      if (value.trim()) setErrors((prev) => ({ ...prev, convidado: "" }));
+    } else if (field === "local") {
+      setLocal(value);
+      if (value.trim()) setErrors((prev) => ({ ...prev, local: "" }));
+    }
+  };
 
   const handleSubmit = () => {
-    // Valida campos obrigatórios
-    if (!convidado.trim() || !local.trim()) {
-      setError("Os campos 'Nome' e 'Local' são obrigatórios.");
-      setSnackbarOpen(true);
+    if (!validateFields()) {
       return;
     }
-
     navigate("/wheel");
   };
 
@@ -69,15 +78,25 @@ const BuscaEstabelecimento = () => {
           handleSubmit();
         }}
       >
-        <FormInput
-          id="convidado"
-          label="Qual é o nome da pessoa convidada?"
-          value={convidado}
-          onChange={(e) =>
-            setConvidado(e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, ""))
+        <div className="form-group">
+          <FormInput
+            id="convidado"
+            label="Qual é o nome da pessoa convidada?"
+            value={convidado}
+            onChange={(e) =>
+              handleInputChange(
+                "convidado",
+                e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "")
+              )
+            }
+            required
+          />
+          {errors.convidado &&
+            <div className="error-tag">
+              <span className="error-text">{errors.convidado}</span>
+            </div>
           }
-          required
-        />
+        </div>
 
         <div className="date-time-row">
           <FormInput
@@ -85,8 +104,8 @@ const BuscaEstabelecimento = () => {
             label="Data"
             type="date"
             value={data}
-            onChange={(e) => setData(e.target.value)} // Atualiza o estado
-            min={new Date().toISOString().split("T")[0]} // Restrição no HTML
+            onChange={(e) => setData(e.target.value)}
+            min={new Date().toISOString().split("T")[0]}
           />
 
           <FormSelect
@@ -99,19 +118,26 @@ const BuscaEstabelecimento = () => {
           />
         </div>
 
-        <FormInput
-          id="local"
-          label="Local do encontro"
-          value={local}
-          onChange={(e) => setLocal(e.target.value)}
-          required
-        />
+        <div className="form-group">
+          <FormInput
+            id="local"
+            label="Local do encontro"
+            value={local}
+            onChange={(e) => handleInputChange("local", e.target.value)}
+            required
+          />
+          {errors.local &&
+            <div className="error-tag">
+              <span className="error-text">{errors.local}</span>
+            </div>
+          }
+        </div>
 
         <div className="cta-section">
           <button
             className="cta-button"
-            type="submit"
-            disabled={!convidado.trim() || !local.trim() || isSpinning}
+            type="button"
+            onClick={handleSubmit}
           >
             {isSpinning ? (
               <CircularProgress size={24} color="inherit" />
@@ -121,18 +147,6 @@ const BuscaEstabelecimento = () => {
           </button>
         </div>
       </form>
-
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        TransitionComponent={(props) => <Slide {...props} direction="down" />}
-      >
-        <Alert severity="error" onClose={handleCloseSnackbar}>
-          {error}
-        </Alert>
-      </Snackbar>
     </div>
   );
 };

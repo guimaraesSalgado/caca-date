@@ -127,6 +127,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0;
 }
 
+.error-text {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+  }
+  
+
 /* === Botão === */
 .cta-section {
     text-align: center;
