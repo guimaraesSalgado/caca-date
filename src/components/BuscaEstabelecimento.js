@@ -20,8 +20,8 @@ const BuscaEstabelecimento = () => {
 
   const validateFields = () => {
     const newErrors = {};
-    if (!convidado.trim()) newErrors.convidado = "Este campo deve ser preenchido";
-    if (!local.trim()) newErrors.local = "Este campo deve ser preenchido";
+    if (!convidado.trim()) newErrors.convidado = "⚠️ Este campo deve ser preenchido";
+    if (!local.trim()) newErrors.local = "⚠️ Este campo deve ser preenchido";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -105,8 +105,9 @@ const BuscaEstabelecimento = () => {
             type="date"
             value={data}
             onChange={(e) => setData(e.target.value)}
-            min={new Date().toISOString().split("T")[0]}
+            min={new Date().toISOString().split("T")[0]} // Limita para hoje ou datas futuras
           />
+
 
           <FormSelect
             id="hora"

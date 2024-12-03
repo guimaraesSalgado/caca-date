@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-section {
     text-align: center;
-    padding: var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-xl);
     border-radius: var(--spacing-sm);
 }
 
@@ -66,8 +66,6 @@ h1, h2, h3, h4, h5, h6 {
 .form-container {
     max-width: 600px;
     margin: 0 auto; 
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
 }
 
 .form-section {
@@ -127,10 +125,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0;
 }
 
-.error-text {
-    color: red;
+.error-tag {
+    margin-top: var(--spacing-sm)
+  }
+  
+  .error-text {
+    color: var(--disabled-color);
     font-size: 0.875rem;
-    margin-top: 1rem;
   }
   
 
