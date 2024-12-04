@@ -104,15 +104,12 @@ const WheelComponent = ({
         className="wheel"
         style={{
           transform: `rotate(${angleCurrent}deg)`,
-          transition: isSpinning
-            ? "transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)"
-            : "none",
         }}
       />
+
       <button onClick={spin} disabled={isSpinning} className="spin-button">
         {isSpinning ? "Girando..." : "Girar"}
       </button>
-      {currentSegment && <div className="result">Resultado: {currentSegment}</div>}
     </div>
   );
 };

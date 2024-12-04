@@ -2,14 +2,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  justify-content: center; /* Centraliza verticalmente */
+  margin: 0 auto; /* Centraliza horizontalmente */
   position: relative;
-  height: 400px;
+  height: 100vh; /* Ocupa a altura total da janela */
+  max-width: 90vw; /* Limita a largura máxima */
+  box-sizing: border-box; /* Garante que o padding seja incluído no tamanho */
 }
 
 .wheel {
-  width: 500px;
-  height: 500px;
+  width: 80vw; /* 80% da largura da janela */
+  max-width: 500px; /* Largura máxima */
+  height: auto; /* Mantém a proporção */
+  aspect-ratio: 1; /* Garante que a roda seja circular */
   border-radius: 50%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   transform-origin: center;
@@ -20,7 +25,7 @@
 .spin-button {
   margin-top: 20px;
   padding: 12px 24px;
-  font-size: 16px;
+  font-size: 1rem; /* Adapta com a tela */
   cursor: pointer;
   background-color: #6558f5;
   color: white;
@@ -36,7 +41,41 @@
 
 .result {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 1.125rem; /* Adapta o tamanho */
   font-weight: bold;
   color: #333;
+  text-align: center;
+}
+
+/* Consultas de mídia para diferentes tamanhos de tela */
+@media (max-width: 768px) {
+  .wheel {
+    width: 70vw; /* Menor em telas médias */
+    max-width: 350px; /* Largura máxima */
+  }
+
+  .spin-button {
+    font-size: 0.9rem; /* Botão menor */
+    padding: 10px 20px;
+  }
+
+  .result {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wheel {
+    width: 90vw; /* Quase toda a largura da tela */
+    max-width: 300px; /* Largura máxima */
+  }
+
+  .spin-button {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+
+  .result {
+    font-size: 0.875rem;
+  }
 }
