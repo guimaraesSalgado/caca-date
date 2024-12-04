@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import "./WheelComponent.css";
 
 const WheelComponent = ({
@@ -12,7 +14,6 @@ const WheelComponent = ({
 }) => {
   const [angleCurrent, setAngleCurrent] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
-  const [currentSegment, setCurrentSegment] = useState("");
   const canvasRef = useRef(null);
 
   const spin = () => {
@@ -29,7 +30,6 @@ const WheelComponent = ({
         (segments.length - normalizedAngle / (360 / segments.length)) % segments.length
       );
 
-      setCurrentSegment(segments[segmentIndex].label); // Mostra o rótulo do segmento
       setIsSpinning(false);
       onFinished(segments[segmentIndex].label); // Passa o rótulo do segmento para o callback
     }, 3000);
@@ -107,9 +107,19 @@ const WheelComponent = ({
         }}
       />
 
-      <button onClick={spin} disabled={isSpinning} className="spin-button">
-        {isSpinning ? "Girando..." : "Girar"}
-      </button>
+<button
+            className="spin-button"
+            type="button"
+            onClick={spin}
+            disabled={isSpinning}
+             
+          >
+            {isSpinning ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              "Girar"
+            )}
+          </button>
     </div>
   );
 };
