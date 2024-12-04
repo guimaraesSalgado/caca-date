@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import "./WheelComponent.css";
@@ -15,6 +16,7 @@ const WheelComponent = ({
   const [angleCurrent, setAngleCurrent] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
 
   const spin = () => {
     if (isSpinning) return;
@@ -106,20 +108,29 @@ const WheelComponent = ({
           transform: `rotate(${angleCurrent}deg)`,
         }}
       />
+      <div className="button-container">
+      <button
+          className="back-button"
+          type="button"
+          onClick={() => navigate("/")}
+        >
+          Voltar
+        </button>
 
-<button
-            className="spin-button"
-            type="button"
-            onClick={spin}
-            disabled={isSpinning}
-             
-          >
-            {isSpinning ? (
-              <CircularProgress size={24} color="inherit" />
-            ) : (
-              "Girar"
-            )}
-          </button>
+        <button
+          className="spin-button"
+          type="button"
+          onClick={spin}
+          disabled={isSpinning}
+        >
+          {isSpinning ? (
+            <CircularProgress size={24} color="inherit" />
+          ) : (
+            "Girar"
+          )}
+        </button>
+        
+      </div>
     </div>
   );
 };

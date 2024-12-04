@@ -1,20 +1,47 @@
+:root {
+  /* Cores */
+  --primary-color: #6558f5;
+  --secondary-color: #2E2E48;
+  --text-color-light: #E0E0FA;
+  --text-color-dark: #000000;
+  --disabled-color: #B4B4C2;
+
+  /* Espaçamento */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Outros */
+  --button-disabled-bg: transparent;
+  --button-hover-bg: var(--primary-color);
+  --button-active-scale: 0.98;
+
+  /* Fontes */
+  --font-family: 'Roboto', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2.5rem;
+}
+
 .wheel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centraliza verticalmente */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  justify-content: center;
+  margin: 0 auto;
   position: relative;
-  height: 100vh; /* Ocupa a altura total da janela */
-  max-width: 90vw; /* Limita a largura máxima */
-  box-sizing: border-box; /* Garante que o padding seja incluído no tamanho */
+  height: 100vh;
+  max-width: 90vw;
+  box-sizing: border-box;
 }
 
 .wheel {
-  width: 80vw; /* 80% da largura da janela */
-  max-width: 500px; /* Largura máxima */
-  height: auto; /* Mantém a proporção */
-  aspect-ratio: 1; /* Garante que a roda seja circular */
+  width: 80vw;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   transform-origin: center;
@@ -22,60 +49,78 @@
   transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.spin-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 1rem; /* Adapta com a tela */
+.spin-button,
+.back-button {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
   cursor: pointer;
-  background-color: #6558f5;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--spacing-sm);
   transition: background-color 0.3s;
 }
 
 .spin-button:disabled {
-  background-color: #aaa;
+  background-color: var(--disabled-color);
   cursor: not-allowed;
 }
 
+.back-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);;
+}
+
+.back-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
 .result {
-  margin-top: 20px;
-  font-size: 1.125rem; /* Adapta o tamanho */
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-lg);
   font-weight: bold;
-  color: #333;
+  color: var(--text-color-dark);
   text-align: center;
+}
+
+.button-container {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
 }
 
 /* Consultas de mídia para diferentes tamanhos de tela */
 @media (max-width: 768px) {
   .wheel {
-    width: 70vw; /* Menor em telas médias */
-    max-width: 350px; /* Largura máxima */
+      width: 70vw;
+      max-width: 350px;
   }
 
-  .spin-button {
-    font-size: 0.9rem; /* Botão menor */
-    padding: 10px 20px;
+  .spin-button,
+  .back-button {
+      font-size: calc(var(--font-size-base) - 0.1rem);
+      padding: var(--spacing-xs) var(--spacing-md);
   }
 
   .result {
-    font-size: 1rem;
+      font-size: calc(var(--font-size-lg) - 0.25rem);
   }
 }
 
 @media (max-width: 480px) {
   .wheel {
-    width: 90vw; /* Quase toda a largura da tela */
-    max-width: 300px; /* Largura máxima */
+      width: 90vw;
+      max-width: 300px;
   }
 
-  .spin-button {
-    font-size: 0.8rem;
-    padding: 8px 16px;
+  .spin-button,
+  .back-button {
+      font-size: calc(var(--font-size-base) - 0.2rem);
+      padding: var(--spacing-xs) var(--spacing-sm);
   }
 
   .result {
-    font-size: 0.875rem;
+      font-size: calc(var(--font-size-lg) - 0.375rem);
   }
 }
