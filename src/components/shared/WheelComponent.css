@@ -51,19 +51,21 @@
 
 .spin-button,
 .back-button {
-  margin-top: var(--spacing-lg);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-base);
-  cursor: pointer;
   background-color: var(--primary-color);
   color: var(--text-color-light);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-base);
+  cursor: pointer;
   border: none;
-  border-radius: var(--spacing-sm);
+  border-radius: var(--spacing-lg);
   transition: background-color 0.3s;
+  height: 50px;
+  width: 100%;
 }
 
 .spin-button:disabled {
-  background-color: var(--disabled-color);
+  background-color: transparent;
   cursor: not-allowed;
 }
 
@@ -86,8 +88,9 @@
 
 .button-container {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-lg);
   margin-top: var(--spacing-lg);
+  width: 75%;
 }
 
 /* Consultas de mídia para diferentes tamanhos de tela */
