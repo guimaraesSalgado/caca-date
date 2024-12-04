@@ -4,6 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import bannerImage from "../assets/title-caca-date.svg";
 
+import Header from "./shared/Header";
 import FormInput from "./shared/FormInput";
 import FormSelect from "./shared/FormSelect";
 
@@ -67,6 +68,7 @@ const BuscaEstabelecimento = () => {
 
   return (
     <div className="container busca-container">
+      < Header/>
       <div className="hero-section">
         <img src={bannerImage} alt="Título Caca Date" className="hero-image" />
       </div>

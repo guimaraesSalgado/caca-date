@@ -99,6 +99,11 @@ const WheelComponent = ({
 
   return (
     <div className="wheel-container">
+      <div className="description-container">
+        <h2>Vamos sortear o seu date?</h2>
+        <p style={{color: `#bbbbbd`}}>Basta girar a Roleta e chamar o seu par</p>
+      </div>
+
       <canvas
         ref={canvasRef}
         width={size * 2}
@@ -109,7 +114,7 @@ const WheelComponent = ({
         }}
       />
       <div className="button-container">
-      <button
+        <button
           className="back-button"
           type="button"
           onClick={() => navigate("/")}
@@ -129,7 +134,7 @@ const WheelComponent = ({
             "Girar"
           )}
         </button>
-        
+
       </div>
     </div>
   );

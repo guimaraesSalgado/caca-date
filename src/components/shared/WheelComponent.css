@@ -37,6 +37,10 @@
   box-sizing: border-box;
 }
 
+.description-container {
+  margin-bottom: var(--spacing-lg);
+}
+
 .wheel {
   width: 80vw;
   max-width: 500px;
