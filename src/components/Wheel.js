@@ -4,153 +4,201 @@ import Modal from "./shared/Modal";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-import PraiaImg from "../assets/icons-roleta/beach.svg";
-import LancheImg from "../assets/icons-roleta/food.svg";
-import TeatroImg from "../assets/icons-roleta/art.svg";
-import FilmeImg from "../assets/icons-roleta/movie.svg";
-import AcampamentoImg from "../assets/icons-roleta/nature.svg";
-import TabuleiroImg from "../assets/icons-roleta/games.svg";
-import MusicaImg from "../assets/icons-roleta/music.svg";
-import ShowImg from "../assets/icons-roleta/ticket.svg";
+import BeachImg from "../assets/icons-roleta/beach.svg";
+import FoodImg from "../assets/icons-roleta/food.svg";
+import ArtImg from "../assets/icons-roleta/art.svg";
+import MovieImg from "../assets/icons-roleta/movie.svg";
+import NatureImg from "../assets/icons-roleta/nature.svg";
+import GamesImg from "../assets/icons-roleta/games.svg";
+import MusicImg from "../assets/icons-roleta/music.svg";
+import TicketImg from "../assets/icons-roleta/ticket.svg";
  
 const Wheel = () => {
   const segments = [
     {
       label: "Bora pra praia?",
       type: "beach",
-      image: PraiaImg,
+      image: BeachImg,
       banner: 'https://blog.coris.com.br/wp-content/uploads/2019/07/mike-swigunski-ueBmz9K8zTg-unsplash-1-1024x768.jpg',
-      color: "dark",
+      background: "dark",
       items: [
         {
           title: "Praia",
-          descricao: "Refúgio de tranquilidade e energia, onde mar, sol e areia se encontram em harmonia.",
-          sugestao: [],
-          local: [],
+          description: "Refúgio de tranquilidade e energia, onde mar, sol e areia se encontram em harmonia.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "Ta com fome?",
       type: "food",
-      image: LancheImg,
+      image: FoodImg,
       banner: 'https://www.assai.com.br/sites/default/files/blog/cachorro_quente_gourmet_-_assai_atacadista.jpg',
-      color: "light", // Define light ou dark
+      background: "light", // Define light ou dark
       items: [
         {
           title: "Comida brasileira",
-          descricao:
+          description:
             "Colorida, rica em temperos e tradições, combina sabores intensos com muita criatividade.",
-          sugestao: ["Moqueca", "Cachorro quente", "Escondidinho"],
-          local: ["casa", "restaurante", "ifood"],
+          suggestion: ["Moqueca", "Cachorro quente", "Escondidinho"],
+          location: ["casa", "restaurante", "ifood"],
         },
         {
           title: "Comida Mexicana",
-          descricao:
+          description:
             "Vibrante, apimentada e cheia de contrastes, une tradição e intensidade em cada prato.",
-          sugestao: ["Tacos", "Burritos", "Nachos"],
-          local: ["casa", "restaurante", "ifood"],
+          suggestion: ["Tacos", "Burritos", "Nachos"],
+          location: ["casa", "restaurante", "ifood"],
         },
         {
           title: "Comida Italiana",
-          descricao:
+          description:
             "Artesanal, rica em sabores, aromas e tradição familiar autêntica.",
-          sugestao: ["Pizza", "Macarrão"],
-          local: ["casa", "restaurante", "ifood"],
+          suggestion: ["Pizza", "Macarrão"],
+          location: ["casa", "restaurante", "ifood"],
         },
         {
           title: "Comida Árabe",
-          descricao:
+          description:
             "Aromática, equilibrada, rica em especiarias e cheia de história.",
-          sugestao: ["Kibes"],
-          local: ["casa", "restaurante", "ifood"],
+          suggestion: ["Kibes"],
+          location: ["casa", "restaurante", "ifood"],
         },
       ],
     },
     {
       label: "Onde vamos hoje?",
       type: "art",
-      image: TeatroImg,
+      image: ArtImg,
       banner: 'https://www.daninoce.com.br/wp-content/uploads/2018/05/museus-e-galerias-de-arte-que-voce-nao-pode-deixar-de-visitar-em-austin-imagem-destaque.jpg',
-      color: "dark",
+      background: "dark",
       items: [
         {
           title: "Museus",
-          descricao: "Palco de emoções e criatividade, transforma vidas através da arte e expressão.",
-          sugestao: [],
-          local: [],
+          description: "Palco de emoções e criatividade, transforma vidas através da arte e expressão.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "Hmmm Netflix ou Disney?",
       type: "movie",
-      image: FilmeImg,
-      color: "light",
+      image: MovieImg,
+      background: "light",
       items: [
         {
           title: "Filmes",
-          descricao: "",
-          sugestao: [],
-          local: [],
+          description: "",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "Leva o repelente!",
       type: "nature",
-      image: AcampamentoImg,
+      image: NatureImg,
       banner: 'https://ocamping.com.br/wp-content/uploads/2024/06/Os-Melhores-Parques-Nacionais-para-Explorar-em-seu-Proximo-Acampamento-1080x675.jpg',
-      color: "dark",
+      background: "dark",
       items: [
         {
           title: "Parque",
-          descricao: "Espaço verde, tranquilo, ideal para lazer, conexão com a natureza e relaxar.",
-          sugestao: [],
-          local: [],
+          description: "Espaço verde, tranquilo, ideal para lazer, conexão com a natureza e relaxar.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "O que vamos jogar hoje?",
       type: "game",
-      image: TabuleiroImg,
-      color: "light",
+      image: GamesImg,
+      background: "light",
       items: [
         {
-          title: "Jogos",
-          descricao: "",
-          sugestao: [],
-          local: [],
+          title: "Jogo rummikub",
+          description: "Jogo de estratégia com peças numéricas, que combina lógica, raciocínio e sorte para formar sequências e grupos.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Jogo Uno",
+          description: "Jogo de cartas dinâmico e divertido, onde os jogadores precisam combinar cores ou números e usar cartas especiais para vencer.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Detetive",
+          description: "Jogo de tabuleiro investigativo, onde os jogadores precisam desvendar o mistério de um assassinato descobrindo o culpado, a arma e o location do crime.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Batalha naval",
+          description: "Clássico jogo de estratégia em que os jogadores tentam afundar as frotas inimigas locationizando a posição dos navios no tabuleiro.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Banco imobiliário",
+          description: "Jogo de negócios em que os participantes compram, vendem e negociam propriedades, tentando levar os oponentes à falência.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Jenga",
+          description: "Jogo de habilidade e destreza, em que os jogadores removem blocos de madeira de uma torre sem derrubá-la.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Dominó",
+          description: "Jogo tradicional em que os participantes combinam peças com números iguais, formando sequências e estratégias para vencer.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Patuscada",
+          description: "Jogo divertido de cartas que mistura estratégia e sorte, perfeito para momentos descontraídos com amigos ou família.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Baralho",
+          description: "Conjunto de cartas que permite jogar diversos jogos clássicos, como Truco, Poker, Buraco e muitos outros.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "Dj, solta o som!",
       type: "music",
-      image: MusicaImg,
-      color: "dark",
+      image: MusicImg,
+      background: "dark",
       items: [
         {
           title: "Musica",
-          descricao: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
-          sugestao: [],
-          local: [],
+          description: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
     {
       label: "Eu acho chic",
       type: "show",
-      image: ShowImg,
+      image: TicketImg,
       banner: 'https://www.cartacapital.com.br/wp-content/uploads/2020/07/shows.jpg',
-      color: "light",
+      background: "light",
       items: [
         {
           title: "Show",
-          descricao: "Experiência vibrante, onde energia, arte e emoção se unem ao vivo",
-          sugestao: [],
-          local: [],
+          description: "Experiência vibrante, onde energia, arte e emoção se unem ao vivo",
+          suggestion: [],
+          location: [],
         }
       ],
     }
@@ -158,7 +206,7 @@ const Wheel = () => {
 
   const generateSegmentColors = (segments) =>
     segments.map((segment) =>
-      segment.color === "light" ? "#c5c1fd" : "#272774"
+      segment.background === "light" ? "#c5c1fd" : "#272774"
     );
 
   const segColors = generateSegmentColors(segments);
@@ -189,7 +237,7 @@ const Wheel = () => {
 
       setRetryCount(0); // Reseta as tentativas no primeiro sorteio
     } else {
-      setResult({ title: "Erro", descricao: "Nenhuma opção encontrada" });
+      setResult({ title: "Erro", description: "Nenhuma opção encontrada" });
     }
 
     setModalOpen(true);

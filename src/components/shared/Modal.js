@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./Modal.css";
 
@@ -26,7 +27,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
       navigator
         .share({
           title: "Convite para Date",
-          text: `Confira: ${result.title} - ${result.descricao}`,
+          text: `Confira: ${result.title} - ${result.description}`,
           url: window.location.href,
         })
         .then(() => console.log("Compartilhamento realizado com sucesso"))
@@ -36,13 +37,13 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
     }
   };
 
-  const formattedSuggestions = formatList(result.sugestao);
-  const formattedLocations = formatList(result.local);
+  const formattedSuggestions = formatList(result.suggestion);
+  const formattedLocations = formatList(result.location);
 
   const isContentEmpty =
-    !result.descricao &&
-    (!result.sugestao || result.sugestao.length === 0) &&
-    (!result.local || result.local.length === 0);
+    !result.description &&
+    (!result.suggestion || result.suggestion.length === 0) &&
+    (!result.location || result.location.length === 0);
 
   return (
     <div className="modal-overlay">
@@ -72,7 +73,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
               )}
 
               <h2 className="title-card">{result.title}</h2>
-              <p className="title-description">{result.descricao}</p>
+              <p className="title-description">{result.description}</p>
 
               {formattedSuggestions && (
                 <>
@@ -90,6 +91,17 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
             </div>
 
             <div className="button-row">
+            {retryCount < maxRetries && (
+                <button
+                  onClick={handleRetry}
+                  className="cta-button-modal retry-button"
+                  disabled={isLoading}
+                >
+                <RefreshIcon className="icon" />
+                  Tentar novamente
+                </button>
+              )}
+
               <button
                 onClick={handleShare}
                 className="cta-button-modal share-button"
@@ -97,17 +109,6 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
                 <ShareIcon className="icon" />
                 Convidar
               </button>
-            </div>
-            <div>
-            {result.items?.length > 1 && retryCount < maxRetries && (
-                <button
-                  onClick={handleRetry}
-                  className="cta-button-modal retry-button"
-                  disabled={isLoading}
-                >
-                  Tentar novamente
-                </button>
-              )}
             </div>
           </>
         )}
