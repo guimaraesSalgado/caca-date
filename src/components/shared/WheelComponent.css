@@ -39,6 +39,7 @@
 
 .description-container {
   margin-bottom: var(--spacing-lg);
+  text-align: center;
 }
 
 .wheel {

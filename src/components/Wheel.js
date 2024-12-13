@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
 import WheelComponent from "./shared/WheelComponent";
 import Modal from "./shared/Modal";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 import PraiaImg from "../assets/icons-roleta/beach.svg";
 import LancheImg from "../assets/icons-roleta/food.svg";
@@ -11,48 +12,253 @@ import AcampamentoImg from "../assets/icons-roleta/nature.svg";
 import TabuleiroImg from "../assets/icons-roleta/games.svg";
 import MusicaImg from "../assets/icons-roleta/music.svg";
 import ShowImg from "../assets/icons-roleta/ticket.svg";
-
+ 
 const Wheel = () => {
-  // Segments: opções que aparecerão na roleta
   const segments = [
-    { label: "Lanche", image: LancheImg },
-    { label: "Praia", image: PraiaImg },
-    { label: "Filme", image: FilmeImg },
-    { label: "Teatro", image: TeatroImg },
-    { label: "Tabuleiro", image: TabuleiroImg },
-    { label: "Acampamento", image: AcampamentoImg },
-    { label: "Show", image: ShowImg },
-    { label: "Música", image: MusicaImg },
+    {
+      label: "Bora pra praia?",
+      type: "beach",
+      image: PraiaImg,
+      color: "dark",
+      items: [
+        {
+          title: "Praia",
+          descricao: "Refúgio de tranquilidade e energia, onde mar, sol e areia se encontram em harmonia.",
+          sugestao: ["Praia 1"],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "Ta com fome?",
+      type: "food",
+      image: LancheImg,
+      banner: 'https://www.assai.com.br/sites/default/files/blog/cachorro_quente_gourmet_-_assai_atacadista.jpg',
+      color: "light", // Define light ou dark
+      items: [
+        {
+          title: "Comida brasileira",
+          descricao:
+            "Colorida, rica em temperos e tradições, combina sabores intensos com muita criatividade.",
+          sugestao: ["Moqueca", "Cachorro quente", "Escondidinho"],
+          local: ["casa", "restaurante", "ifood"],
+        },
+        {
+          title: "Comida Mexicana",
+          descricao:
+            "Vibrante, apimentada e cheia de contrastes, une tradição e intensidade em cada prato.",
+          sugestao: ["Tacos", "Burritos", "Nachos"],
+          local: ["casa", "restaurante", "ifood"],
+        },
+        {
+          title: "Comida Italiana",
+          descricao:
+            "Artesanal, rica em sabores, aromas e tradição familiar autêntica.",
+          sugestao: ["Pizza", "Macarrão"],
+          local: ["casa", "restaurante", "ifood"],
+        },
+        {
+          title: "Comida Árabe",
+          descricao:
+            "Aromática, equilibrada, rica em especiarias e cheia de história.",
+          sugestao: ["Kibes"],
+          local: ["casa", "restaurante", "ifood"],
+        },
+      ],
+    },
+    {
+      label: "Onde vamos hoje?",
+      type: "art",
+      image: TeatroImg,
+      color: "dark",
+      items: [
+        {
+          title: "Museus",
+          descricao: "Palco de emoções e criatividade, transforma vidas através da arte e expressão.",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "Hmmm Netflix ou Disney?",
+      type: "movie",
+      image: FilmeImg,
+      color: "light",
+      items: [
+        {
+          title: "Filmes",
+          descricao: "",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "Leva o repelente!",
+      type: "nature",
+      image: AcampamentoImg,
+      color: "dark",
+      items: [
+        {
+          title: "Parque",
+          descricao: "",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "O que vamos jogar hoje?",
+      type: "game",
+      image: TabuleiroImg,
+      color: "light",
+      items: [
+        {
+          title: "Jogos",
+          descricao: "",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "Dj, solta o som!",
+      type: "music",
+      image: MusicaImg,
+      color: "dark",
+      items: [
+        {
+          title: "Musica",
+          descricao: "",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    },
+    {
+      label: "Eu acho chic",
+      type: "show",
+      image: ShowImg,
+      color: "light",
+      items: [
+        {
+          title: "Show",
+          descricao: "",
+          sugestao: [],
+          local: [],
+        }
+      ],
+    }
   ];
 
-  // Colors: cores alternadas para os segmentos
-  const segColors = ["#c5c1fd", "#272774", "#c5c1fd", "#272774", "#c5c1fd", "#272774", "#c5c1fd", "#272774"];
+  const generateSegmentColors = (segments) =>
+    segments.map((segment) =>
+      segment.color === "light" ? "#c5c1fd" : "#272774"
+    );
 
-  // Função chamada quando o giro termina
+  const segColors = generateSegmentColors(segments);
+
   const [modalOpen, setModalOpen] = useState(false);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(null);
+  const [currentType, setCurrentType] = useState(null); // Salva o tipo sorteado
+  const [retryCount, setRetryCount] = useState(0); // Conta as tentativas
+  const [toastOpen, setToastOpen] = useState(false); // Estado para o toast
+
+  const MAX_RETRIES = 3; // Limite de tentativas
 
   const handleFinished = (winner) => {
-    setResult(winner);
-    setModalOpen(true); // Abre o modal
+    const selectedType = segments.find((segment) => segment.type === winner);
+
+    if (selectedType) {
+      const randomItem =
+        selectedType.items[
+          Math.floor(Math.random() * selectedType.items.length)
+        ] || {}; // Fallback para evitar erros caso items esteja vazio
+
+      setCurrentType(selectedType); // Atualiza o tipo atual
+
+      setResult({
+        ...randomItem,
+        banner: selectedType.banner || "",
+      });
+
+      setRetryCount(0); // Reseta as tentativas no primeiro sorteio
+    } else {
+      setResult({ title: "Erro", descricao: "Nenhuma opção encontrada" });
+    }
+
+    setModalOpen(true);
+  };
+
+  const retryItemSelection = () => {
+    if (!currentType) return;
+
+    setRetryCount((prevRetryCount) => {
+      if (prevRetryCount + 1 >= MAX_RETRIES) {
+        setModalOpen(false); // Fecha o modal após atingir o limite
+        setToastOpen(true); // Exibe o toast
+        return prevRetryCount;
+      }
+
+      const randomItem =
+        currentType.items[
+          Math.floor(Math.random() * currentType.items.length)
+        ] || {}; // Fallback para evitar erros caso items esteja vazio
+
+      setResult({
+        ...randomItem,
+        banner: currentType.banner || "",
+      });
+
+      return prevRetryCount + 1; // Incrementa o contador
+    });
   };
 
   const closeModal = () => {
-    setModalOpen(false); // Fecha o modal
+    setModalOpen(false);
+    setToastOpen(true); // Exibe o toast
+  };
+
+  const closeToast = () => {
+    setToastOpen(false);
   };
 
   return (
     <div>
       <WheelComponent
-        segments={segments}
+        segments={segments.map((segment) => ({
+          label: segment.type,
+          image: segment.image,
+        }))}
         segColors={segColors}
-        onFinished={handleFinished}
-        size={250} // Tamanho da roleta
-        primaryColor="#f8a85f" // Cor do centro
-        contrastColor="#FFF" // Cor do texto
-        buttonText="" // Texto do botão
+        onFinished={(winner) => handleFinished(winner)}
+        size={250}
+        primaryColor="#f8a85f"
+        contrastColor="#FFF"
+        buttonText=""
       />
-      <Modal isOpen={modalOpen} onClose={closeModal} result={result} />
+      {result && (
+        <Modal
+          isOpen={modalOpen}
+          onClose={closeModal}
+          result={result}
+          onRetry={retryItemSelection} // Passa a função de tentar novamente
+          retryCount={retryCount}
+          maxRetries={MAX_RETRIES}
+        />
+      )}
+      {/* Toast */}
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={8000} // 8 segundos
+        onClose={closeToast}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={closeToast} severity="info" sx={{ width: "100%" }}>
+          Assine para sorteios ilimitados!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

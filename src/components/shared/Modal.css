@@ -1,40 +1,183 @@
-/* Estilo para o overlay (fundo escuro) */
+/* === Variáveis Globais === */
+:root {
+  /* Cores */
+  --primary-color: #6558f5;
+  --secondary-color: #2E2E48;
+  --tertiary-color: #dc0b89;
+  --text-color-light: #E0E0FA;
+  --text-color-dark: #000000;
+  --text: #82828b;
+  --disabled-color: #B4B4C2;
+
+  /* Espaçamento */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Outros */
+  --button-disabled-bg: transparent;
+  --button-hover-bg: var(--primary-color);
+  --button-active-scale: 0.98;
+
+  /* Fontes */
+  --font-family: 'Roboto', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2.5rem;
+}
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  /* Estilo para o conteúdo do modal */
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-  
-  /* Estilo para o botão de fechar */
-  .modal-close-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
-    background-color: #6558f5;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modal-close-button:hover {
-    background-color: #5343c9;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: var(--spacing-md);
+  width: 80%;
+  max-width: 500px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-color-light);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  min-height: 400px;
+  /* Mantém o tamanho estático */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  /* Ocupa todo o espaço do modal */
+}
+
+
+.modal-section {
+  margin-bottom: var(--spacing-lg);
+  overflow: hidden;
+  border-radius: var(--spacing-md);
+}
+
+.modal-section img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: var(--spacing-md);
+}
+
+.title-card,
+.title-description,
+.title-subtitle,
+.title-itens {
+  text-align: left;
+}
+
+.title-card {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin: var(--spacing-lg) 0;
+  color: var(--text-color-dark);
+}
+
+.title-description,
+.title-itens {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--text);
+}
+
+.title-subtitle {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.cta-button-modal {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  border-radius: var(--spacing-lg);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.cta-button-modal:disabled {
+  background-color: var(--button-disabled-bg);
+  cursor: not-allowed;
+}
+
+.cta-button-modal:active:not(:disabled) {
+  transform: scale(var(--button-active-scale));
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.cta-button-modal.retry-button {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  flex: 1;
+  position: absolute;
+  bottom: 35px;
+  width: 50%;
+}
+
+.cta-button-modal.share-button {
+  background-color: transparent;
+  gap: 20px;
+  color: var(--primary-color);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+}
+
+.cta-button-modal.close-button {
+  background-color: var(--tertiary-color);
+  color: var(--text-color-light);
+  flex: 1;
+  position: absolute;
+  top: 0;
+  width: 50%;
+}
+
+/* ZONA DE CONSTRUCAO */
+.construction-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.construction-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.construction-container p {
+  font-size: 1rem;
+  color: var(--text);
+  margin-top: 8px;
+}

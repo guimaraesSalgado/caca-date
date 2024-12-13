@@ -1,0 +1,12 @@
+{ 
+    label: "Alimentação", 
+    type: "food"
+    image: LancheImg,
+    sub: [
+        {
+            title: 'Brasileira',
+            description: 'lorem ipson'
+            
+        }
+    ]
+}
