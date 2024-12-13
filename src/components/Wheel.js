@@ -19,12 +19,13 @@ const Wheel = () => {
       label: "Bora pra praia?",
       type: "beach",
       image: PraiaImg,
+      banner: 'https://blog.coris.com.br/wp-content/uploads/2019/07/mike-swigunski-ueBmz9K8zTg-unsplash-1-1024x768.jpg',
       color: "dark",
       items: [
         {
           title: "Praia",
           descricao: "Refúgio de tranquilidade e energia, onde mar, sol e areia se encontram em harmonia.",
-          sugestao: ["Praia 1"],
+          sugestao: [],
           local: [],
         }
       ],
@@ -70,6 +71,7 @@ const Wheel = () => {
       label: "Onde vamos hoje?",
       type: "art",
       image: TeatroImg,
+      banner: 'https://www.daninoce.com.br/wp-content/uploads/2018/05/museus-e-galerias-de-arte-que-voce-nao-pode-deixar-de-visitar-em-austin-imagem-destaque.jpg',
       color: "dark",
       items: [
         {
@@ -98,11 +100,12 @@ const Wheel = () => {
       label: "Leva o repelente!",
       type: "nature",
       image: AcampamentoImg,
+      banner: 'https://ocamping.com.br/wp-content/uploads/2024/06/Os-Melhores-Parques-Nacionais-para-Explorar-em-seu-Proximo-Acampamento-1080x675.jpg',
       color: "dark",
       items: [
         {
           title: "Parque",
-          descricao: "",
+          descricao: "Espaço verde, tranquilo, ideal para lazer, conexão com a natureza e relaxar.",
           sugestao: [],
           local: [],
         }
@@ -130,7 +133,7 @@ const Wheel = () => {
       items: [
         {
           title: "Musica",
-          descricao: "",
+          descricao: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
           sugestao: [],
           local: [],
         }
@@ -140,11 +143,12 @@ const Wheel = () => {
       label: "Eu acho chic",
       type: "show",
       image: ShowImg,
+      banner: 'https://www.cartacapital.com.br/wp-content/uploads/2020/07/shows.jpg',
       color: "light",
       items: [
         {
           title: "Show",
-          descricao: "",
+          descricao: "Experiência vibrante, onde energia, arte e emoção se unem ao vivo",
           sugestao: [],
           local: [],
         }
