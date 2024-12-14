@@ -50,13 +50,14 @@
   text-align: center;
   color: var(--text-color-light);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-  min-height: 400px;
-  /* Mantém o tamanho estático */
+  max-height: 550px; /* Define a altura máxima */
+  overflow-y: auto; /* Adiciona a rolagem vertical */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 .loading-container {
   display: flex;
@@ -111,7 +112,6 @@
 }
 
 .cta-button-modal {
-  margin-top: var(--spacing-xl);
   padding: var(--spacing-md) var(--spacing-lg);
   font-size: var(--font-size-base);
   border-radius: var(--spacing-lg);

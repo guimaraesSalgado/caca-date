@@ -79,6 +79,24 @@ const Wheel = () => {
           description: "Palco de emoções e criatividade, transforma vidas através da arte e expressão.",
           suggestion: [],
           location: [],
+        },
+        {
+          title: "Teatro",
+          description: "Arte viva, emoção e expressão, onde histórias ganham vida no palco e encantam a alma.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Galeria",
+          description: "Um espaço de inspiração, onde obras revelam histórias, emoções e criatividade.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Centro cultural",
+          description: "Polo de aprendizado e troca, unindo arte, cultura e comunidade em um só lugar.",
+          suggestion: [],
+          location: [],
         }
       ],
     },
@@ -89,11 +107,23 @@ const Wheel = () => {
       background: "light",
       items: [
         {
-          title: "Filmes",
-          description: "",
+          title: "Comedia",
+          description: "Traz leveza e risadas, transformando situações comuns em momentos de puro humor e diversão.",
           suggestion: [],
           location: [],
-        }
+        },
+        {
+          title: "Terror",
+          description: "Provoca medo e tensão, explorando o desconhecido e despertando calafrios em cada cena.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Musical",
+          description: "Encanta com histórias vibrantes, cheias de música, dança e emoção que tocam o coração.",
+          suggestion: [],
+          location: [],
+        },
       ],
     },
     {
@@ -106,6 +136,18 @@ const Wheel = () => {
         {
           title: "Parque",
           description: "Espaço verde, tranquilo, ideal para lazer, conexão com a natureza e relaxar.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Praia",
+          description: "Refúgio de paz, onde o mar encontra a areia, criando momentos de lazer e conexão.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Cachoeira",
+          description: "Espetáculo natural, onde a força da água encontra a serenidade da natureza.",
           suggestion: [],
           location: [],
         }
@@ -180,7 +222,25 @@ const Wheel = () => {
       background: "dark",
       items: [
         {
-          title: "Musica",
+          title: "Rock",
+          description: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Pop",
+          description: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Rap",
+          description: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "R&B",
           description: "Arte sonora, expressão emocional, harmonia e ritmo que transcendem palavras.",
           suggestion: [],
           location: [],
@@ -195,7 +255,13 @@ const Wheel = () => {
       background: "light",
       items: [
         {
-          title: "Show",
+          title: "Infantil",
+          description: "Experiência vibrante, onde energia, arte e emoção se unem ao vivo",
+          suggestion: [],
+          location: [],
+        },
+        {
+          title: "Concerto",
           description: "Experiência vibrante, onde energia, arte e emoção se unem ao vivo",
           suggestion: [],
           location: [],

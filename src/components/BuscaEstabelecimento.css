@@ -1,32 +1,23 @@
-/* === Variáveis Globais === */
 :root {
-    /* Cores */
     --primary-color: #6558f5;
     --secondary-color: #2E2E48;
     --text-color-light: #E0E0FA;
     --text-color-dark: #000000;
     --disabled-color: #B4B4C2;
-
-    /* Espaçamento */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
-
-    /* Outros */
     --button-disabled-bg: transparent;
     --button-hover-bg: var(--primary-color);
     --button-active-scale: 0.98;
-
-    /* Fontes */
     --font-family: 'Roboto', sans-serif;
     --font-size-base: 1rem;
     --font-size-lg: 1.25rem;
     --font-size-xl: 2.5rem;
 }
 
-/* === Estilo Global === */
 body {
     background: radial-gradient(circle, #1C1C4E, #0B0A1A);
     color: var(--text-color-light);
@@ -34,6 +25,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,13 +37,13 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-color-light);
 }
 
-/* === Layout === */
 .container {
-    max-width: 100%;
+    max-width: 375px;
     width: 100%;
     margin: 0 auto;
     padding: var(--spacing-lg);
     box-sizing: border-box;
+    background-color: transparent;
 }
 
 .hero-section {
@@ -62,7 +57,6 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
-/* === Formulário === */
 .form-container {
     max-width: 600px;
     margin: 0 auto; 
@@ -105,14 +99,13 @@ select:disabled {
 }
 
 input[type="date"] {
-    color: #E0E0FA; /* Cor do texto */
+    color: #E0E0FA;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Inverte as cores do ícone */
-    cursor: pointer; /* Define o cursor como clicável */
+    filter: invert(1);
+    cursor: pointer;
 }
-
 
 .date-time-row {
     display: flex;
@@ -127,19 +120,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .error-tag {
     margin-top: var(--spacing-sm)
-  }
-  
-  .error-text {
+}
+
+.error-text {
     color: var(--disabled-color);
     font-size: 0.875rem;
-  }
-  
+}
 
-/* === Botão === */
 .cta-section {
     text-align: center;
-    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);
+    width: 50%;
+    margin: var(--spacing-lg) auto;
+    margin-bottom: 0;
 }
 
 .cta-button {
@@ -169,7 +162,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: scale(var(--button-active-scale));
 }
 
-/* === Snackbar === */
 .snackbar {
     background-color: var(--secondary-color);
     color: var(--text-color-light);
