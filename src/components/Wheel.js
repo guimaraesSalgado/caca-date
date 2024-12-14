@@ -283,7 +283,7 @@ const Wheel = () => {
   const [retryCount, setRetryCount] = useState(0); // Conta as tentativas
   const [toastOpen, setToastOpen] = useState(false); // Estado para o toast
 
-  const MAX_RETRIES = 3; // Limite de tentativas
+  const MAX_RETRIES = 2; // Limite de tentativas
 
   const handleFinished = (winner) => {
     const selectedType = segments.find((segment) => segment.type === winner);
@@ -335,8 +335,12 @@ const Wheel = () => {
 
   const closeModal = () => {
     setModalOpen(false);
-    setToastOpen(true); // Exibe o toast
+  
+    if (retryCount >= MAX_RETRIES) {
+      setToastOpen(true);
+    }
   };
+  
 
   const closeToast = () => {
     setToastOpen(false);

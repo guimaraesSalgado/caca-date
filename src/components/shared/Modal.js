@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
-import RefreshIcon from "@mui/icons-material/Refresh";
+import InterestsIcon from "@mui/icons-material/Interests";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./Modal.css";
 
@@ -49,7 +49,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
     <div className="modal-overlay">
       <div className="modal-content">
         <button onClick={onClose} className="cta-button-modal close-button">
-          Fechar
+         Girar novamente
         </button>
 
         {isLoading ? (
@@ -91,17 +91,18 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
             </div>
 
             <div className="button-row">
-            {retryCount < maxRetries && (
-                <button
-                  onClick={handleRetry}
-                  className="cta-button-modal retry-button"
-                  disabled={isLoading}
-                >
-                <RefreshIcon className="icon" />
-                  Tentar novamente
-                </button>
+              {retryCount < maxRetries && (
+                <>
+                  <button
+                    onClick={handleRetry}
+                    className="cta-button-modal retry-button"
+                    disabled={isLoading}
+                  >
+                    <InterestsIcon className="icon" />
+                    Embaralhar
+                  </button>
+                </>
               )}
-
               <button
                 onClick={handleShare}
                 className="cta-button-modal share-button"
@@ -110,6 +111,12 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
                 Convidar
               </button>
             </div>
+
+            {/* <div>
+            <p className="attempts-remaining">
+                    Tentativas restantes: {maxRetries - retryCount}
+                  </p>
+            </div> */}
           </>
         )}
       </div>

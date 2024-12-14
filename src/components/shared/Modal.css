@@ -51,7 +51,7 @@
   color: var(--text-color-light);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   max-height: 550px; /* Define a altura máxima */
-  overflow-y: auto; /* Adiciona a rolagem vertical */
+  overflow: hidden; /* Adiciona a rolagem vertical */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,7 +70,7 @@
 
 .modal-section {
   margin-bottom: var(--spacing-lg);
-  overflow: hidden;
+  overflow-y: auto;
   border-radius: var(--spacing-md);
 }
 
@@ -139,6 +139,7 @@
 .cta-button-modal.retry-button {
   background-color: var(--primary-color);
   color: var(--text-color-light);
+  gap: 20px;
   display: flex;
   align-items: center;
 }
@@ -178,4 +179,11 @@
   font-size: 1rem;
   color: var(--text);
   margin-top: 8px;
+}
+
+.attempts-remaining {
+  font-size: 0.9rem;
+  color: var(--disabled-color);
+  margin-top: var(--spacing-sm);
+  text-align: center;
 }
