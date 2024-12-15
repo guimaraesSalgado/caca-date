@@ -112,11 +112,11 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
               </button>
             </div>
 
-            {/* <div>
-            <p className="attempts-remaining">
-                    Tentativas restantes: {maxRetries - retryCount}
-                  </p>
-            </div> */}
+              {/* <div>
+              <p className="attempts-remaining">
+                      Tentativas restantes: {maxRetries - retryCount}
+                    </p>
+              </div> */}
           </>
         )}
       </div>

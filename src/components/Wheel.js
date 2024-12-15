@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import WheelComponent from "./shared/WheelComponent";
-import Modal from "./shared/Modal";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
+import WheelComponent from "./shared/WheelComponent";
+import Modal from "./shared/Modal";
 import BeachImg from "../assets/icons-roleta/beach.svg";
 import FoodImg from "../assets/icons-roleta/food.svg";
 import ArtImg from "../assets/icons-roleta/art.svg";
@@ -14,6 +14,7 @@ import MusicImg from "../assets/icons-roleta/music.svg";
 import TicketImg from "../assets/icons-roleta/ticket.svg";
  
 const Wheel = () => {
+  
   const segments = [
     {
       label: "Bora pra praia?",
@@ -270,12 +271,13 @@ const Wheel = () => {
     }
   ];
 
-  const generateSegmentColors = (segments) =>
-    segments.map((segment) =>
-      segment.background === "light" ? "#c5c1fd" : "#272774"
-    );
+  const generateSegmentColors = (segments) => {
+    const zebraColors = ["#c5c1fd", "#272774"]; // Cores alternadas (claro/escuro)
+    return segments.map((_, index) => zebraColors[index % 2]); // Alterna as cores com base no índice
+  };
 
-  const segColors = generateSegmentColors(segments);
+  const shuffledSegments = shuffleArray([...segments]);
+  const segColors = generateSegmentColors(shuffledSegments);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [result, setResult] = useState(null);
@@ -283,55 +285,62 @@ const Wheel = () => {
   const [retryCount, setRetryCount] = useState(0); // Conta as tentativas
   const [toastOpen, setToastOpen] = useState(false); // Estado para o toast
 
-  const MAX_RETRIES = 2; // Limite de tentativas
+  const MAX_RETRIES = 3; // Limite de tentativas
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Troca os elementos
+    }
+    return array;
+  }
 
   const handleFinished = (winner) => {
     const selectedType = segments.find((segment) => segment.type === winner);
-
+  
     if (selectedType) {
-      const randomItem =
-        selectedType.items[
-          Math.floor(Math.random() * selectedType.items.length)
-        ] || {}; // Fallback para evitar erros caso items esteja vazio
-
-      setCurrentType(selectedType); // Atualiza o tipo atual
-
+      // Embaralha os itens para maior imprevisibilidade
+      const shuffledItems = shuffleArray([...selectedType.items]);
+  
+      const randomItem = shuffledItems[0]; // Pega o primeiro item embaralhado
+  
+      setCurrentType(selectedType);
       setResult({
         ...randomItem,
         banner: selectedType.banner || "",
       });
-
-      setRetryCount(0); // Reseta as tentativas no primeiro sorteio
+  
+      setRetryCount(0);
     } else {
-      setResult({ title: "Erro", description: "Nenhuma opção encontrada" });
+      setResult({ title: "Erro", description: "Nenhum item disponível para sorteio" });
     }
-
+  
     setModalOpen(true);
   };
 
   const retryItemSelection = () => {
     if (!currentType) return;
-
+  
     setRetryCount((prevRetryCount) => {
       if (prevRetryCount + 1 >= MAX_RETRIES) {
-        setModalOpen(false); // Fecha o modal após atingir o limite
-        setToastOpen(true); // Exibe o toast
+        setModalOpen(false);
+        setToastOpen(true);
         return prevRetryCount;
       }
-
-      const randomItem =
-        currentType.items[
-          Math.floor(Math.random() * currentType.items.length)
-        ] || {}; // Fallback para evitar erros caso items esteja vazio
-
+  
+      // Embaralha os itens antes de escolher
+      const shuffledItems = shuffleArray([...currentType.items]);
+      const randomItem = shuffledItems[0];
+  
       setResult({
         ...randomItem,
         banner: currentType.banner || "",
       });
-
-      return prevRetryCount + 1; // Incrementa o contador
+  
+      return prevRetryCount + 1;
     });
   };
+  
 
   const closeModal = () => {
     setModalOpen(false);
@@ -349,7 +358,7 @@ const Wheel = () => {
   return (
     <div>
       <WheelComponent
-        segments={segments.map((segment) => ({
+        segments={shuffledSegments.map((segment) => ({
           label: segment.type,
           image: segment.image,
         }))}
