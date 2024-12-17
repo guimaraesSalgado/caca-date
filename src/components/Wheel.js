@@ -12,9 +12,9 @@ import NatureImg from "../assets/icons-roleta/nature.svg";
 import GamesImg from "../assets/icons-roleta/games.svg";
 import MusicImg from "../assets/icons-roleta/music.svg";
 import TicketImg from "../assets/icons-roleta/ticket.svg";
- 
+
 const Wheel = () => {
-  
+
   const segments = [
     {
       label: "Bora pra praia?",
@@ -39,32 +39,24 @@ const Wheel = () => {
       background: "light", // Define light ou dark
       items: [
         {
-          title: "Comida brasileira",
-          description:
-            "Colorida, rica em temperos e tradições, combina sabores intensos com muita criatividade.",
-          suggestion: ["Moqueca", "Cachorro quente", "Escondidinho"],
-          location: ["casa", "restaurante", "ifood"],
+          title: "Cozinhe juntos",
+          descricao: "Divertido, Romântico, agradavél.",
+          sugestao: ["Sushi", "Escondidinho", "Lasanha"],
+          local: ["casa"]
         },
+
         {
-          title: "Comida Mexicana",
-          description:
-            "Vibrante, apimentada e cheia de contrastes, une tradição e intensidade em cada prato.",
-          suggestion: ["Tacos", "Burritos", "Nachos"],
-          location: ["casa", "restaurante", "ifood"],
+          title: "Apresente seu restaurante preferido",
+          descricao: "Intimista, Romântico, agradavél.",
+          sugestao: ["Peça seu prato preferido", "Pegue uma mesa mais privada"],
+          local: ["casa", "restaurante"]
         },
+
         {
-          title: "Comida Italiana",
-          description:
-            "Artesanal, rica em sabores, aromas e tradição familiar autêntica.",
-          suggestion: ["Pizza", "Macarrão"],
-          location: ["casa", "restaurante", "ifood"],
-        },
-        {
-          title: "Comida Árabe",
-          description:
-            "Aromática, equilibrada, rica em especiarias e cheia de história.",
-          suggestion: ["Kibes"],
-          location: ["casa", "restaurante", "ifood"],
+          title: "Comam uma pizza inteira",
+          descricao: " Divertido, agradavél.",
+          sugestao: ["encontre uma pizza que os dois amem"],
+          local: ["casa", "restaurante", "ifood"]
         },
       ],
     },
@@ -297,59 +289,59 @@ const Wheel = () => {
 
   const handleFinished = (winner) => {
     const selectedType = segments.find((segment) => segment.type === winner);
-  
+
     if (selectedType) {
       // Embaralha os itens para maior imprevisibilidade
       const shuffledItems = shuffleArray([...selectedType.items]);
-  
+
       const randomItem = shuffledItems[0]; // Pega o primeiro item embaralhado
-  
+
       setCurrentType(selectedType);
       setResult({
         ...randomItem,
         banner: selectedType.banner || "",
       });
-  
+
       setRetryCount(0);
     } else {
       setResult({ title: "Erro", description: "Nenhum item disponível para sorteio" });
     }
-  
+
     setModalOpen(true);
   };
 
   const retryItemSelection = () => {
     if (!currentType) return;
-  
+
     setRetryCount((prevRetryCount) => {
       if (prevRetryCount + 1 >= MAX_RETRIES) {
         setModalOpen(false);
         setToastOpen(true);
         return prevRetryCount;
       }
-  
+
       // Embaralha os itens antes de escolher
       const shuffledItems = shuffleArray([...currentType.items]);
       const randomItem = shuffledItems[0];
-  
+
       setResult({
         ...randomItem,
         banner: currentType.banner || "",
       });
-  
+
       return prevRetryCount + 1;
     });
   };
-  
+
 
   const closeModal = () => {
     setModalOpen(false);
-  
+
     if (retryCount >= MAX_RETRIES) {
       setToastOpen(true);
     }
   };
-  
+
 
   const closeToast = () => {
     setToastOpen(false);
