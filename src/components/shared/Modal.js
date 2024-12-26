@@ -49,7 +49,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
     <div className="modal-overlay">
       <div className="modal-content">
         <button onClick={onClose} className="cta-button-modal close-button">
-         Girar novamente
+          Girar novamente
         </button>
 
         {isLoading ? (
@@ -72,7 +72,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
                 />
               )}
 
-              <h2 className="title-card">{result.title}</h2>
+              <h2 className="title-card">{result.title} - {result.label}</h2>
               <p className="title-description">{result.description}</p>
 
               {formattedSuggestions && (
@@ -89,6 +89,7 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
                 </>
               )}
             </div>
+
 
             <div className="button-row">
               {retryCount < maxRetries && (
@@ -111,12 +112,6 @@ const Modal = ({ isOpen, onClose, result, onRetry, retryCount, maxRetries }) => 
                 Convidar
               </button>
             </div>
-
-              {/* <div>
-              <p className="attempts-remaining">
-                      Tentativas restantes: {maxRetries - retryCount}
-                    </p>
-              </div> */}
           </>
         )}
       </div>

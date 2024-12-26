@@ -17,7 +17,7 @@ const Wheel = () => {
 
   const segments = [
     {
-      label: "Bora pra praia?",
+      label: "Alterar esse item!",
       type: "beach",
       image: BeachImg,
       banner: 'https://blog.coris.com.br/wp-content/uploads/2019/07/mike-swigunski-ueBmz9K8zTg-unsplash-1-1024x768.jpg',
@@ -32,7 +32,7 @@ const Wheel = () => {
       ],
     },
     {
-      label: "Ta com fome?",
+      label: "Gastronomia",
       type: "food",
       image: FoodImg,
       banner: 'https://www.assai.com.br/sites/default/files/blog/cachorro_quente_gourmet_-_assai_atacadista.jpg',
@@ -61,66 +61,91 @@ const Wheel = () => {
       ],
     },
     {
-      label: "Onde vamos hoje?",
+      label: "Arte e cultura",
       type: "art",
       image: ArtImg,
       banner: 'https://www.daninoce.com.br/wp-content/uploads/2018/05/museus-e-galerias-de-arte-que-voce-nao-pode-deixar-de-visitar-em-austin-imagem-destaque.jpg',
       background: "dark",
       items: [
         {
-          title: "Museus",
-          description: "Palco de emoções e criatividade, transforma vidas através da arte e expressão.",
-          suggestion: [],
-          location: [],
+          title: "Façam uma aula de pintura juntos",
+          descricao: " Divertido,  criativo, colaborativo.",
+          sugestao: ["Exemplorem a criatividade juntos, criem uma boa memória e no final, vocês ainda levam um pedacinho desse momento para casa!"],
+          local: ["casa", "ateliê", "espaço cultural"]
         },
         {
-          title: "Teatro",
-          description: "Arte viva, emoção e expressão, onde histórias ganham vida no palco e encantam a alma.",
-          suggestion: [],
-          location: [],
+          title: "Visitem uma exposição interativa",
+          descricao: "Imersivo, tecnológico, único.",
+          sugestao: ["Entrem no mundo das instalações interativas e descubram novas formas de se conectar com a arte e um com o outro"],
+          local: ["museu", "espaço cultural"]
         },
+
         {
-          title: "Galeria",
-          description: "Um espaço de inspiração, onde obras revelam histórias, emoções e criatividade.",
-          suggestion: [],
-          location: [],
+          title: "Customizem algo juntos",
+          descricao: "Criativo, personalizado, especial.",
+          sugestao: ["Criem juntos camisetas, bags ou até mesmo peças de cerâmica. Façam algo único!"],
+          local: ["casa", "ateliê", "loja de personalização"]
         },
+
         {
-          title: "Centro cultural",
-          description: "Polo de aprendizado e troca, unindo arte, cultura e comunidade em um só lugar.",
-          suggestion: [],
-          location: [],
-        }
-      ],
+          title: "Fotografem o dia",
+          descricao: "Artístico, divertido, espontâneo.",
+          sugestao: ["Peguem uma câmera (ou o celular mesmo!) e registrem momentos especiais. Quem sabe vira uma tradição?"],
+          local: ["ruas da cidade", "parque", "museu"]
+        },
+
+        {
+          title: "Aula de escultura em argila",
+          descricao: "Divertido, sensorial, criativo.",
+          sugestao: ["Soltem a imaginação e coloquem a mão na massa (literalmente!) enquanto criam algo único juntos."],
+          local: ["ateliê", "espaço cultural"]
+        }],
     },
     {
-      label: "Hmmm Netflix ou Disney?",
+      label: "Filmes e séries",
       type: "movie",
       image: MovieImg,
       background: "light",
       items: [
         {
-          title: "Comedia",
-          description: "Traz leveza e risadas, transformando situações comuns em momentos de puro humor e diversão.",
-          suggestion: [],
-          location: [],
+          title: "Maratona de filmes clássicos",
+          descricao: "nostálgico, acolhedor, divertido",
+          sugestao: ["Escolham aqueles filmes icônicos que todo mundo fala e façam uma sessão de cinema com direito a petiscos e muitas risadas."],
+          local: ["casa", "streaming"]
         },
+
         {
-          title: "Terror",
-          description: "Provoca medo e tensão, explorando o desconhecido e despertando calafrios em cada cena.",
-          suggestion: [],
-          location: [],
+          title: "Cinema ao ar livre",
+          descricao: "Relaxante, charmoso, especial.",
+          sugestao: ["curtam um filme sob o céu estrelado com pipoca e cobertores. O cenário perfeito para um date perfeito."],
+          local: ["casa", "parque", "praça cultural"]
         },
+
         {
-          title: "Musical",
-          description: "Encanta com histórias vibrantes, cheias de música, dança e emoção que tocam o coração.",
-          suggestion: [],
-          location: [],
+          title: "Crie um clipe musical",
+          descricao: "criativo, engraçado, interativo.",
+          sugestao: ["Escolham uma música que amem e gravem cenas juntos como se fosse um clipe. A diversão (e as risadas) estão garantidas!"],
+          local: ["casa", "ruas da cidade", "parque"]
         },
+
+        {
+          title: "Maratona de animações",
+          descricao: "Leve, divertido, nostálgico",
+          sugestao: ["Revivam a infância com filmes de animação ou descubram novos favoritos. Ótima desculpa para dar muitas risadas"],
+          local: ["casa", "streaming", "cinema"]
+        },
+
+
+        {
+          title: "Top 5 filmes do casal",
+          descricao: "Colaborativo, especial, aconchegante.",
+          sugestao: ["Façam uma lista dos filmes que marcaram a vida de vocês e comecem a assistir (ou reassistir) juntos."],
+          local: ["casa", "streaming", "cinema"]
+        }
       ],
     },
     {
-      label: "Leva o repelente!",
+      label: "Ar livre",
       type: "nature",
       image: NatureImg,
       banner: 'https://ocamping.com.br/wp-content/uploads/2024/06/Os-Melhores-Parques-Nacionais-para-Explorar-em-seu-Proximo-Acampamento-1080x675.jpg',
@@ -147,7 +172,7 @@ const Wheel = () => {
       ],
     },
     {
-      label: "O que vamos jogar hoje?",
+      label: "Brincadeiras e jogos",
       type: "game",
       image: GamesImg,
       background: "light",
@@ -209,7 +234,7 @@ const Wheel = () => {
       ],
     },
     {
-      label: "Dj, solta o som!",
+      label: "Música",
       type: "music",
       image: MusicImg,
       background: "dark",
@@ -241,7 +266,7 @@ const Wheel = () => {
       ],
     },
     {
-      label: "Eu acho chic",
+      label: "Alterar esse item!",
       type: "show",
       image: TicketImg,
       banner: 'https://www.cartacapital.com.br/wp-content/uploads/2020/07/shows.jpg',
@@ -291,14 +316,13 @@ const Wheel = () => {
     const selectedType = segments.find((segment) => segment.type === winner);
 
     if (selectedType) {
-      // Embaralha os itens para maior imprevisibilidade
       const shuffledItems = shuffleArray([...selectedType.items]);
-
-      const randomItem = shuffledItems[0]; // Pega o primeiro item embaralhado
+      const randomItem = shuffledItems[0];
 
       setCurrentType(selectedType);
       setResult({
         ...randomItem,
+        label: selectedType.label,
         banner: selectedType.banner || "",
       });
 
